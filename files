@@ -1,0 +1,122 @@
+import java.io.FileWriter;
+import java.io.IOException;
+class CreateFile
+{
+public static void main(String[] args) throws IOException
+{
+String str = "File Handling in Java using "+
+" FileWriter and FileReader";
+FileWriter fw=new FileWriter("output.txt");
+for (int i = 0; i < str.length(); i++)
+fw.write(str.charAt(i));
+System.out.println("Writing successful");
+fw.close();
+}
+}
+
+2.PROGRAM:
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+public class FileException
+{
+public static void main(String[] args)
+{
+final String path = "Output.txt";
+FileInputStream fis = null;
+try
+{
+fis = new FileInputStream(path);
+int ch;
+String data = "";
+while( (ch = fis.read())!= -1)
+
+02-02-2022
+
+18
+
+18
+
+{
+data += (char)ch;
+}
+if(data != "")
+System.out.println("File contents : " + data);
+else
+System.out.println("File Empty");
+
+}
+catch( FileNotFoundException e)
+{
+System.out.println("File does not already exist.");
+}
+catch(IOException e)
+{
+System.out.println(e);
+}
+finally
+{
+try
+{
+if(fis != null)
+fis.close();
+
+}
+catch(IOException e)
+{
+System.out.println(e);
+}
+}
+Scanner sc = null;
+FileOutputStream fout = null;
+try
+{
+
+19
+
+19
+
+sc = new Scanner(System.in);
+fout = new FileOutputStream(path);
+System.out.print("Enter a string to save: ");
+String data = sc.nextLine();
+byte b[] = data.getBytes();
+fout.write(b);
+}
+catch(IOException e)
+{
+System.out.println(e);
+}
+finally
+{
+try
+{
+if(sc != null)
+sc.close();
+if(fout != null)
+fout.close();
+
+}
+catch(IOException e)
+{
+System.out.println(e);
+}
+}
+}
+}
+OUTPUT:
+Testcase 1
+File contents : awert
+Enter a string to save: hello world updating file
+
+20
+
+20
+
+Testcase 2
+File contents : hello world updating file
+Enter a string to save: second updation done
+RESULT:
+Program was executed and out was verified for different test cases.
